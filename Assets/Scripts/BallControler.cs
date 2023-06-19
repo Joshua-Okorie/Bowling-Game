@@ -15,23 +15,23 @@ public class BallControler : MonoBehaviour
         ballRigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {   
+        //Building up force of roll
        if(Input.GetKey(KeyCode.Space))
         {
             ForceAdd();
         }
-          
+          //Releasing the bowling ball
         if(Input.GetKeyUp(KeyCode.Space))
         {
             ImpulseForce(forceMultiplier);
-
         } 
     }
 
     public void ImpulseForce(int forceMultiplier)
     {
+        //Force applictaion
         Vector3 ballDrive = new Vector3(-5.0f -forceMultiplier, 0f, 0f);
         ballRigidBody.AddForce(ballDrive,ForceMode.Impulse);
     }
@@ -39,6 +39,7 @@ public class BallControler : MonoBehaviour
     public void ForceAdd()
     {
         {
+            //Increasing force per second 
             elapsedTime += Time.deltaTime;
 
             if (elapsedTime >= increaseInterval)
@@ -46,11 +47,19 @@ public class BallControler : MonoBehaviour
                 forceMultiplier++;
                 elapsedTime = 0f;
                 Debug.Log("FORCE" + forceMultiplier);
-                
-            }
-            
+            }   
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the collision is happening with the Deadzone
+        if (collision.gameObject.CompareTag("Deadzone"))
+        {
+            // Destroy the ball
+            Destroy(gameObject);
+        }
     }
 
    
