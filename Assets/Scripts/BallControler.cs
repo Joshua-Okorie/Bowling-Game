@@ -8,6 +8,8 @@ public class BallControler : MonoBehaviour
     int forceMultiplier;
     private float elapsedTime = 0f;
     public float increaseInterval = 1f; 
+    public GameObject objectToActivate;
+
     
 
     void Start()
@@ -23,9 +25,10 @@ public class BallControler : MonoBehaviour
             ForceAdd();
         }
           //Releasing the bowling ball
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Space) )
         {
             ImpulseForce(forceMultiplier);
+            objectToActivate.SetActive(true);
         } 
     }
 
@@ -62,5 +65,10 @@ public class BallControler : MonoBehaviour
         }
     }
 
+    
+    private void OnDestroy()
+    {
+        
+    }
    
 }

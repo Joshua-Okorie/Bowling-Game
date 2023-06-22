@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
-    void Replay()
+    public void Replay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
