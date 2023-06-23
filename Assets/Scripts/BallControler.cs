@@ -66,9 +66,6 @@ public class BallControler : MonoBehaviour
     }
 
     
-    private void OnDestroy()
-    {
-        
-    }
+ 
    
 }
